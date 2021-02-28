@@ -1,7 +1,8 @@
 class User {
+  final String id;
   final String name;
   final String email;
   final String pictureUrl;
 
-  User({this.name, this.email, this.pictureUrl});
+  User({this.id, this.name, this.email, this.pictureUrl});
 }
