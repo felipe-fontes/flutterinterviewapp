@@ -15,7 +15,7 @@ class GetNewsImpl implements GetNews {
   @override
   Future<Either<NewsError, List<News>>> call() async {
     try {
-      final response = await _newsRepository.get();
+      final response = await _newsRepository.getAll();
 
       if (response == null) {
         return Left(UnableToGet());

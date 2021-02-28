@@ -13,16 +13,16 @@ main() {
   final usecase = GetNewsImpl(repository);
 
   test('Should return a List<News>', () async {
-    when(repository.get()).thenAnswer((_) async => <News>[]);
+    when(repository.getAll()).thenAnswer((_) async => <News>[]);
 
     final result = await usecase();
 
     expect(result.isRight(), true);
-    expect(result | null, isA<List<News>>());
+    expect(result.fold(id, id), isA<List<News>>());
   });
 
   test('Should return UnableToGet when repository return null', () async {
-    when(repository.get()).thenAnswer((_) async => null);
+    when(repository.getAll()).thenAnswer((_) async => null);
 
     final result = await usecase();
 
@@ -32,7 +32,7 @@ main() {
 
   test('Should return UnableToGet when repository throws any Exception',
       () async {
-    when(repository.get()).thenThrow(() => Exception());
+    when(repository.getAll()).thenThrow(() => Exception());
 
     final result = await usecase();
 
