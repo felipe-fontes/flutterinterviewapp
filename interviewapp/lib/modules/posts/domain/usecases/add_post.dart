@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:interviewapp/modules/posts/domain/contracts/post_repository.dart';
 import 'package:interviewapp/modules/posts/domain/entities/post.dart';
 import 'package:interviewapp/modules/posts/domain/errors/errors.dart';
+import 'package:interviewapp/modules/users/domain/contracts/user_repository.dart';
 
 abstract class AddPost {
   Future<Either<PostError, Post>> call(String message);
@@ -9,9 +10,11 @@ abstract class AddPost {
 
 class AddPostImpl implements AddPost {
   final PostRepository _postRepository;
+  final UserRepository _userRepository;
+
   int _messageLength = 280;
 
-  AddPostImpl(this._postRepository);
+  AddPostImpl(this._postRepository, this._userRepository);
 
   Future<Either<PostError, Post>> call(String message) async {
     try {
@@ -24,7 +27,12 @@ class AddPostImpl implements AddPost {
             'Your message is too long, try to stay below $_messageLength'));
       }
 
-      final response = await _postRepository.add(message);
+      final user = await _userRepository.logged();
+      if (user == null) {
+        return Left(UnableToAdd('You need to be logged in order to add post!'));
+      }
+
+      final response = await _postRepository.add(message, user, DateTime.now());
 
       if (response == null) {
         return Left(UnableToAdd('Something went wrong, try again later!'));
