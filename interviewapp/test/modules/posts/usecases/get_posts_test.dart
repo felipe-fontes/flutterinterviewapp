@@ -3,7 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:interviewapp/modules/posts/domain/contracts/post_repository.dart';
 import 'package:interviewapp/modules/posts/domain/entities/post.dart';
 import 'package:interviewapp/modules/posts/domain/errors/errors.dart';
-import 'package:interviewapp/modules/posts/domain/usecases/add_post.dart';
 import 'package:interviewapp/modules/posts/domain/usecases/get_posts.dart';
 import 'package:mockito/mockito.dart';
 
