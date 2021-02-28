@@ -16,6 +16,18 @@ class UnableToCreate extends UserError {
   UnableToCreate(this.message) : super(message);
 }
 
+class UnableToGetLoggedUser extends UserError {
+  final String message;
+
+  UnableToGetLoggedUser(this.message) : super(message);
+}
+
+class UserNotLogged extends UserError {
+  final String message;
+
+  UserNotLogged(this.message) : super(message);
+}
+
 class UnableToLogin extends UserError {
   final String message;
 
