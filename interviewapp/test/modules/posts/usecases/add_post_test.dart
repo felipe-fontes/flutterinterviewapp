@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:interviewapp/modules/news/domain/errors/errors.dart';
 import 'package:interviewapp/modules/posts/domain/contracts/post_repository.dart';
 import 'package:interviewapp/modules/posts/domain/entities/post.dart';
 import 'package:interviewapp/modules/posts/domain/errors/errors.dart';
