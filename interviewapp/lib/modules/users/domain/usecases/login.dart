@@ -3,7 +3,6 @@ import 'package:interviewapp/modules/users/domain/contracts/user_repository.dart
 import 'package:interviewapp/modules/users/domain/entities/user.dart';
 import 'package:interviewapp/modules/users/domain/errors/errors.dart';
 import 'package:interviewapp/modules/users/domain/usecases/base_user.dart';
-import 'package:interviewapp/modules/users/domain/usecases/user_util.dart';
 
 abstract class Login {
   Future<Either<UserError, User>> call(String email, String password);
