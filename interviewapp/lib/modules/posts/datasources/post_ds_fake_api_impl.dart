@@ -52,6 +52,7 @@ class PostDataSourceImpl implements PostDataSource {
         message: message);
 
     _db.add(post);
+    return Future.value(post);
   }
 
   @override
