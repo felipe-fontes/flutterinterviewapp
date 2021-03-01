@@ -1,6 +1,10 @@
 import 'package:interviewapp/modules/news/domain/entities/news.dart';
 
 class NewsModel extends News {
-  NewsModel(String name, String profilePicture, DateTime date)
-      : super(name, profilePicture, date);
+  final String name;
+  final String message;
+  final String profilePicture;
+  final DateTime date;
+
+  NewsModel({this.name, this.message, this.profilePicture, this.date});
 }
