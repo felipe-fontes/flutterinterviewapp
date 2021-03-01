@@ -1,9 +1,8 @@
 import 'package:interviewapp/modules/posts/domain/entities/post.dart';
-import 'package:interviewapp/modules/users/domain/entities/user.dart';
 
 abstract class PostRepository {
   Future<List<Post>> getAll();
-  Future<Post> add(String message, User user, DateTime date);
-  Future<Post> update(Post post, String message, DateTime date);
-  Future<bool> delete(Post post);
+  Future<Post> add(String message, String userId, DateTime date);
+  Future<Post> update(String postId, String message, DateTime date);
+  Future<bool> delete(String postId);
 }

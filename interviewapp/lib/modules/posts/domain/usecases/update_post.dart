@@ -38,7 +38,7 @@ class UpdatePostImpl extends BasePost implements UpdatePost {
       }
 
       final response =
-          await _postRepository.update(post, message, DateTime.now());
+          await _postRepository.update(post.id, message, DateTime.now());
 
       if (response == null) {
         return Left(UnableToUpdate('Something went wrong, try again later!'));

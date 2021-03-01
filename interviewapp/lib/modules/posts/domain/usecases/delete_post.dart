@@ -30,7 +30,7 @@ class DeletePostImpl implements DeletePost {
         return Left(UnableToDelete('You can`t delete somebody else post!'));
       }
 
-      final response = await _postRepository.delete(post);
+      final response = await _postRepository.delete(post.id);
 
       if (response == null || !response) {
         return Left(UnableToDelete('Something went wrong, try again later!'));

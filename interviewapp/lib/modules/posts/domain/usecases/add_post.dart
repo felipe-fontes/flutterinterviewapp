@@ -28,7 +28,8 @@ class AddPostImpl extends BasePost implements AddPost {
         return Left(UnableToAdd('You need to be logged in order to add post!'));
       }
 
-      final response = await _postRepository.add(message, user, DateTime.now());
+      final response =
+          await _postRepository.add(message, user.id, DateTime.now());
 
       if (response == null) {
         return Left(UnableToAdd('Something went wrong, try again later!'));
