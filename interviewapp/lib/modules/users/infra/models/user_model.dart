@@ -7,8 +7,9 @@ class UserModel extends User {
   String name;
   String email;
   String pictureUrl;
+  String password;
 
-  UserModel({this.id, this.name, this.email, this.pictureUrl});
+  UserModel({this.id, this.name, this.email, this.pictureUrl, this.password});
 
   Map<String, dynamic> toMap() {
     return {
