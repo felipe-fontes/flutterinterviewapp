@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:interviewapp/modules/users/infra/contracts/user_datasource.dart';
@@ -56,10 +53,13 @@ main() {
   });
 
   test('Login Should save UserModel in local storage', () async {
+    final dataSource = UserDataSourceMock();
+    final storage = StorageMock();
+    final repository = UserRespositoryImpl(storage, dataSource);
+
     when(dataSource.login(any, any)).thenAnswer((_) async => UserModel());
 
-    final result =
-        await repository.login('felipe-fontes@hotmail.com', '123456');
+    await repository.login('felipe-fontes@hotmail.com', '123456');
 
     verify(storage.write(key: anyNamed('key'), value: UserModel().toJson()))
         .called(1);
