@@ -21,6 +21,9 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  splashscreen:
+  mobx:
+  flutter_mobx:
   get_it: 5.0.6
   crypto:
   flutter_secure_storage:
@@ -35,6 +38,8 @@ dependencies:
   cupertino_icons: ^1.0.0
 
 dev_dependencies:
+  mobx_codegen:
+  build_runner:
   mockito:
   flutter_test:
     sdk: flutter
