@@ -15,10 +15,15 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
       body: Center(
         child: Container(
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [AppColors.topGradient, AppColors.bottomGradient])),
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                AppColors.companyColor,
+                AppColors.background,
+              ],
+            ),
+          ),
           child: Center(
             child: Text(
               'Hello Gradient!',

@@ -67,5 +67,7 @@ abstract class _CreateAccountControllerBase with Store {
       print(ex);
       error = true;
     }
+
+    return null;
   }
 }

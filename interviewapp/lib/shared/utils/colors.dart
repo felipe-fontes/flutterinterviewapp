@@ -12,46 +12,46 @@ class AppColors {
     }
   }
 
-  static Color get topGradient => colorMap['topGradient_$_selectedMode'];
-  static Color get bottomGradient => colorMap['bottomGradient_$_selectedMode'];
+  static Color get companyColor => colorMap['companyColor-$_selectedMode'];
+  static Color get background => colorMap['background-$_selectedMode'];
+  static Color get companyColorSmoth =>
+      colorMap['companyColorSmoth-$_selectedMode'];
+  static Color get gradient1 => colorMap['gradient1-$_selectedMode'];
+  static Color get gradient2 => colorMap['gradient2-$_selectedMode'];
+  static Color get gradient3 => colorMap['gradient3-$_selectedMode'];
+  static Color get gradient4 => colorMap['gradient4-$_selectedMode'];
+  static Color get gradient5 => colorMap['gradient5-$_selectedMode'];
+  static Color get gradient6 => colorMap['gradient6-$_selectedMode'];
 
-  static Color _companyColor = Color.fromRGBO(111, 150, 126, 0.5);
+  static Color _companyColor = Color.fromRGBO(132, 94, 194, 1);
+  static Color _companyColorSmoth = Color.fromRGBO(132, 94, 194, 0.5);
   static Color _darkBackground = Color.fromRGBO(0, 0, 0, 1);
   static Color _lightBackground = Color.fromRGBO(255, 255, 255, 1);
-  static Color _darkFont = Color.fromRGBO(238, 238, 238, 1);
-  static Color _darkCardGhost = Color.fromRGBO(255, 255, 255, 0.15);
-  static Color _lightCardGhost = Color.fromRGBO(0, 0, 0, 0.05);
+  static Color _gradient1 = Color.fromRGBO(132, 94, 194, 1);
+  static Color _gradient2 = Color.fromRGBO(214, 93, 177, 1);
+  static Color _gradient3 = Color.fromRGBO(255, 111, 145, 1);
+  static Color _gradient4 = Color.fromRGBO(255, 150, 113, 1);
+  static Color _gradient5 = Color.fromRGBO(255, 199, 95, 1);
+  static Color _gradient6 = Color.fromRGBO(249, 248, 113, 1);
 
   static Map<String, Color> colorMap = {
-    'topGradient_dark': _companyColor,
-    'topGradient_light': _companyColor,
-    'bottomGradient_dark': _darkBackground,
-    'bottomGradient_light': _lightBackground,
-    'primaryButton_dark': _companyColor,
-    'primaryButton_light': _companyColor,
-    'text_light': _darkBackground,
-    'text_dark': _companyColor,
-    'subtext_dark': _darkFont,
-    'subtext_light': _darkBackground,
-    'textButton_dark': _darkBackground,
-    'textButton_light': _lightBackground,
-    'footerText_dark': _lightBackground,
-    'footerText_light': _darkBackground,
-    'link_dark': _companyColor,
-    'link_light': _companyColor,
-    'backgroundColor_dark': _darkBackground,
-    'backgroundColor_light': _lightBackground,
-    'registerColor_dark': _darkCardGhost,
-    'registerColor_light': _lightCardGhost,
-    'appBarColor_dark': _companyColor,
-    'appBarColor_light': _darkBackground,
-    'textRegister_light': _darkBackground,
-    'textRegister_dark': _lightBackground,
-    'conditionText_dark': _lightBackground,
-    'conditionText_light': _darkBackground,
-    'title_dark': _companyColor,
-    'title_light': _companyColor,
-    'themeColor_dark': _companyColor,
-    'themeColor_light': _companyColor,
+    'companyColor-dark': _companyColor,
+    'companyColor-light': _companyColor,
+    'background-dark': _darkBackground,
+    'background-light': _lightBackground,
+    'companyColorSmoth-light': _companyColorSmoth,
+    'companyColorSmoth-dark': _companyColorSmoth,
+    'gradient1-light': _gradient1,
+    'gradient1-dark': _gradient1,
+    'gradient2-light': _gradient2,
+    'gradient2-dark': _gradient2,
+    'gradient3-light': _gradient3,
+    'gradient3-dark': _gradient3,
+    'gradient4-light': _gradient4,
+    'gradient4-dark': _gradient4,
+    'gradient5-light': _gradient5,
+    'gradient5-dark': _gradient5,
+    'gradient6-light': _gradient6,
+    'gradient6-dark': _gradient6,
   };
 }
