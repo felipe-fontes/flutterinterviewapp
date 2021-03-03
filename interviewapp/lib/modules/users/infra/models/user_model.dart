@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:interviewapp/modules/users/domain/entities/user.dart';
 
 class UserModel extends User {
-  String id;
-  String name;
-  String email;
-  String pictureUrl;
-  String password;
+  final String id;
+  final String name;
+  final String email;
+  final String pictureUrl;
+  final String password;
 
   UserModel({this.id, this.name, this.email, this.pictureUrl, this.password});
 
@@ -17,6 +17,7 @@ class UserModel extends User {
       'name': name,
       'email': email,
       'pictureUrl': pictureUrl,
+      'password': password,
     };
   }
 
@@ -28,6 +29,7 @@ class UserModel extends User {
       name: map['name'],
       email: map['email'],
       pictureUrl: map['pictureUrl'],
+      password: map['password'],
     );
   }
 

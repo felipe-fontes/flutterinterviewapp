@@ -10,19 +10,29 @@ class UserDataSourceFakeApiImpl implements UserDataSource {
   final FlutterSecureStorage _storage;
   final String _key = 'users';
 
-  UserDataSourceFakeApiImpl(this._storage);
+  UserDataSourceFakeApiImpl(this._storage) {
+    this.init();
+  }
 
   @override
   Future<UserModel> create(String email, String password, String name) async {
     final db = await getDb();
-    final foundUser =
-        db.firstWhere((x) => x.email.toLowerCase() == email.toLowerCase());
+    db.clear();
+    saveDb(db);
+    final foundUser = db.firstWhere(
+      (x) => x.email.toLowerCase() == email.toLowerCase(),
+      orElse: () => null,
+    );
     if (foundUser == null) {
-      db.add(UserModel(
-          email: email,
-          id: UniqueKey().toString(),
-          name: name,
-          password: hash(password)));
+      final user = UserModel(
+        email: email,
+        id: UniqueKey().toString(),
+        name: name,
+        password: hash(password),
+      );
+      db.add(user);
+      await saveDb(db);
+      return user;
     }
     return null;
   }
@@ -30,18 +40,25 @@ class UserDataSourceFakeApiImpl implements UserDataSource {
   @override
   Future<UserModel> login(String email, String password) async {
     final db = await getDb();
+
     final foundUser = db.firstWhere(
-        (x) =>
-            x.email.toLowerCase() == email.toLowerCase() &&
-            hash(password) == x.password,
-        orElse: null);
+      (x) =>
+          x.email.toLowerCase() == email.toLowerCase() &&
+          hash(password) == x.password,
+      orElse: () => null,
+    );
 
     return foundUser;
   }
 
-  void init() async {
+  Future saveDb(List<UserModel> list) async {
+    final json = jsonEncode(list);
+    await _storage.write(key: _key, value: json);
+  }
+
+  Future init() async {
     if (!await _storage.containsKey(key: _key)) {
-      await _storage.write(key: _key, value: jsonEncode(<UserModel>[]));
+      await saveDb(<UserModel>[]);
     }
   }
 
@@ -50,6 +67,10 @@ class UserDataSourceFakeApiImpl implements UserDataSource {
   }
 
   Future<List<UserModel>> getDb() async {
-    return jsonDecode(await _storage.read(key: _key));
+    final json = await _storage.read(key: _key);
+    final map = jsonDecode(json);
+    List<UserModel> users =
+        List<UserModel>.from(map.map((model) => UserModel.fromJson(model)));
+    return users;
   }
 }
