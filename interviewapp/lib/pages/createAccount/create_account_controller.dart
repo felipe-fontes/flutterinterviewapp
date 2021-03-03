@@ -1,18 +1,17 @@
 import 'package:dartz/dartz.dart';
+import 'package:interviewapp/modules/users/domain/entities/user.dart';
 import 'package:interviewapp/modules/users/domain/errors/errors.dart';
-import 'package:interviewapp/modules/users/domain/usecases/login.dart';
+import 'package:interviewapp/modules/users/domain/usecases/create_user.dart';
 import 'package:mobx/mobx.dart';
+part 'create_account_controller.g.dart';
 
-part 'login_controller.g.dart';
+class CreateAccountController = _CreateAccountControllerBase
+    with _$CreateAccountController;
 
-class LoginController = _LoginControllerBase with _$LoginController;
+abstract class _CreateAccountControllerBase with Store {
+  final CreateUser _createUser;
 
-abstract class _LoginControllerBase with Store {
-  final Login _login;
-
-  _LoginControllerBase(
-    this._login,
-  );
+  _CreateAccountControllerBase(this._createUser);
 
   @observable
   String email;
@@ -21,7 +20,10 @@ abstract class _LoginControllerBase with Store {
   String password;
 
   @observable
-  bool logged;
+  String name;
+
+  @observable
+  bool created;
 
   @observable
   bool error = false;
@@ -42,22 +44,25 @@ abstract class _LoginControllerBase with Store {
   }
 
   @action
-  Future login() async {
-    try {
-      if (email == null || password == null) {
-        error = true;
-        return;
-      }
+  void setName(String value) {
+    name = value;
+    error = false;
+  }
 
-      final loginResult = await _login(email, password);
+  @action
+  Future<User> create() async {
+    try {
+      final loginResult = await _createUser(email, password, name);
 
       if (loginResult.isRight()) {
-        logged = true;
+        created = true;
       } else {
         UserError loginError = loginResult.fold(id, null);
         errorMessage = loginError.message;
         error = true;
       }
+
+      return loginResult | null;
     } catch (ex) {
       print(ex);
       error = true;

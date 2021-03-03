@@ -21,6 +21,7 @@ import 'package:interviewapp/modules/users/domain/usecases/login.dart';
 import 'package:interviewapp/modules/users/infra/contracts/user_datasource.dart';
 import 'package:interviewapp/modules/users/infra/repositories/user_repository_impl.dart';
 import 'package:dio/dio.dart';
+import 'package:interviewapp/pages/createAccount/create_account_controller.dart';
 import 'package:interviewapp/pages/login/login_controller.dart';
 
 void setup() {
@@ -75,4 +76,7 @@ void setup() {
 
   GetIt.I.registerLazySingleton<LoginController>(
       () => LoginController(GetIt.I<Login>()));
+
+  GetIt.I.registerLazySingleton<CreateAccountController>(
+      () => CreateAccountController(GetIt.I<CreateUser>()));
 }
