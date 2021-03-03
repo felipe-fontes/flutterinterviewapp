@@ -77,6 +77,24 @@ main() {
     expect(result.fold(id, id), isA<InvalidPassword>());
   });
 
+  test('Should return InvalidName when name is null', () async {
+    when(repository.create(any, any, any)).thenAnswer((_) async => null);
+
+    final result = await usecase('felipe-fontes@hotmail.com', '123456', null);
+
+    expect(result.isLeft(), true);
+    expect(result.fold(id, id), isA<InvalidName>());
+  });
+
+  test('Should return InvalidName when name is empty', () async {
+    when(repository.create(any, any, any)).thenAnswer((_) async => null);
+
+    final result = await usecase('felipe-fontes@hotmail.com', '123456', '');
+
+    expect(result.isLeft(), true);
+    expect(result.fold(id, id), isA<InvalidName>());
+  });
+
   test('Should return UnableToCreate when repository return null', () async {
     when(repository.create(any, any, any)).thenAnswer((_) async => null);
 

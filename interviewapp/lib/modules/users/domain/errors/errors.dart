@@ -40,6 +40,12 @@ class InvalidEmail extends UserError {
   InvalidEmail(this.message) : super(message);
 }
 
+class InvalidName extends UserError {
+  final String message;
+
+  InvalidName(this.message) : super(message);
+}
+
 class InvalidPassword extends UserError {
   final String message;
 

@@ -29,6 +29,10 @@ class CreateUserImpl extends BaseUser implements CreateUser {
         return Left(error);
       }
 
+      if (name == null || name.isEmpty) {
+        return Left(InvalidName('A valid name is required'));
+      }
+
       final response = await _userRepository.create(email, password, name);
 
       if (response == null) {
