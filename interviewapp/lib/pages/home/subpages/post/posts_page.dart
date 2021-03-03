@@ -29,9 +29,13 @@ class _PostsPageState extends State<PostsPage> {
         return ListView.builder(
           itemCount: _postController.posts.length,
           itemBuilder: (context, i) => Card(
-            color: AppColors.gradient3,
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Container(
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
