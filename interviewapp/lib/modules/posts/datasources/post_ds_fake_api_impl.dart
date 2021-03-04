@@ -7,37 +7,37 @@ class PostDataSourceImpl implements PostDataSource {
   List<PostModel> _db = <PostModel>[
     PostModel(
         id: UniqueKey().toString(),
-        user: UserModel(id: UniqueKey().toString()),
+        user: UserModel(id: UniqueKey().toString(), name: 'UserA'),
         date: DateTime.now(),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard'),
     PostModel(
         id: UniqueKey().toString(),
-        user: UserModel(id: UniqueKey().toString()),
+        user: UserModel(id: UniqueKey().toString(), name: 'UserB'),
         date: DateTime.now(),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard'),
     PostModel(
         id: UniqueKey().toString(),
-        user: UserModel(id: UniqueKey().toString()),
+        user: UserModel(id: UniqueKey().toString(), name: 'UserC'),
         date: DateTime.now(),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard'),
     PostModel(
         id: UniqueKey().toString(),
-        user: UserModel(id: UniqueKey().toString()),
+        user: UserModel(id: UniqueKey().toString(), name: 'UserA'),
         date: DateTime.now(),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard'),
     PostModel(
         id: UniqueKey().toString(),
-        user: UserModel(id: UniqueKey().toString()),
+        user: UserModel(id: UniqueKey().toString(), name: 'UserA'),
         date: DateTime.now(),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard'),
     PostModel(
         id: UniqueKey().toString(),
-        user: UserModel(id: UniqueKey().toString()),
+        user: UserModel(id: UniqueKey().toString(), name: 'UserB'),
         date: DateTime.now(),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard')

@@ -4,11 +4,16 @@ import 'package:interviewapp/modules/users/domain/contracts/user_repository.dart
 import 'package:interviewapp/pages/home/home_page.dart';
 import 'package:interviewapp/pages/login/login_page.dart';
 import 'package:interviewapp/setup.dart';
+import 'package:interviewapp/shared/utils/colors.dart';
 
 void main() {
   setup();
   runApp(new MaterialApp(
     home: new MyApp(),
+    theme: ThemeData(
+      primaryColor: AppColors.companyColor,
+      accentColor: AppColors.companyColorSmoth,
+    ),
   ));
 }
 

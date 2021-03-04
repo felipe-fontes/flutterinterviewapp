@@ -37,18 +37,35 @@ class _PostsPageState extends State<PostsPage> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
                   colors: [
-                    AppColors.gradient1,
-                    AppColors.gradient1.withOpacity(0.9),
+                    AppColors.companyColor,
+                    AppColors.companyColorSmoth,
                   ],
                 ),
               ),
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                _postController.posts[i].message,
-                style: TextStyle(color: AppColors.background),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _postController.posts[i].user.name,
+                    style: TextStyle(
+                      color: AppColors.background,
+                      fontSize: 14,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    _postController.posts[i].message,
+                    style: TextStyle(
+                      color: AppColors.background,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

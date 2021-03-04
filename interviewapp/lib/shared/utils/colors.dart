@@ -16,15 +16,18 @@ class AppColors {
   static Color get background => colorMap['background-$_selectedMode'];
   static Color get companyColorSmoth =>
       colorMap['companyColorSmoth-$_selectedMode'];
-  static Color get gradient1 => colorMap['gradient1-$_selectedMode'];
-  static Color get gradient2 => colorMap['gradient2-$_selectedMode'];
-  static Color get gradient3 => colorMap['gradient3-$_selectedMode'];
-  static Color get gradient4 => colorMap['gradient4-$_selectedMode'];
-  static Color get gradient5 => colorMap['gradient5-$_selectedMode'];
-  static Color get gradient6 => colorMap['gradient6-$_selectedMode'];
+  // static Color get gradient1 => colorMap['gradient1-$_selectedMode'];
+  // static Color get gradient2 => colorMap['gradient2-$_selectedMode'];
+  // static Color get gradient3 => colorMap['gradient3-$_selectedMode'];
+  // static Color get gradient4 => colorMap['gradient4-$_selectedMode'];
+  // static Color get gradient5 => colorMap['gradient5-$_selectedMode'];
+  // static Color get gradient6 => colorMap['gradient6-$_selectedMode'];
 
-  static Color _companyColor = Color.fromRGBO(132, 94, 194, 1);
-  static Color _companyColorSmoth = Color.fromRGBO(132, 94, 194, 0.5);
+  static Color get gradient7 => colorMap['gradient7-$_selectedMode'];
+  static Color get gradient8 => colorMap['gradient8-$_selectedMode'];
+
+  static Color _companyColor = Color.fromRGBO(116, 53, 243, 1);
+  static Color _companyColorSmoth = Color.fromRGBO(152, 80, 248, 1);
   static Color _darkBackground = Color.fromRGBO(0, 0, 0, 1);
   static Color _lightBackground = Color.fromRGBO(255, 255, 255, 1);
   static Color _gradient1 = Color.fromRGBO(132, 94, 194, 1);
@@ -33,6 +36,9 @@ class AppColors {
   static Color _gradient4 = Color.fromRGBO(255, 150, 113, 1);
   static Color _gradient5 = Color.fromRGBO(255, 199, 95, 1);
   static Color _gradient6 = Color.fromRGBO(249, 248, 113, 1);
+
+  static Color _gradient7 = Color.fromRGBO(116, 53, 243, 1);
+  static Color _gradient8 = Color.fromRGBO(196, 112, 254, 1);
 
   static Map<String, Color> colorMap = {
     'companyColor-dark': _companyColor,
@@ -53,5 +59,9 @@ class AppColors {
     'gradient5-dark': _gradient5,
     'gradient6-light': _gradient6,
     'gradient6-dark': _gradient6,
+    'gradient7-light': _gradient7,
+    'gradient7-dark': _gradient7,
+    'gradient8-light': _gradient7,
+    'gradient8-dark': _gradient8,
   };
 }
