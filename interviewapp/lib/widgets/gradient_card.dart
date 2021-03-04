@@ -5,11 +5,11 @@ class GradientCard extends StatelessWidget {
   final Color endColor;
   final Color shadowColor;
   final Widget child;
-  double bolderRadius;
-  Alignment gradientStart;
-  Alignment gradientEnd;
-  double blurRadius;
-  Offset shadowOffset;
+  final double bolderRadius;
+  final Alignment gradientStart;
+  final Alignment gradientEnd;
+  final double blurRadius;
+  final Offset shadowOffset;
 
   GradientCard({
     Key key,

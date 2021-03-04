@@ -59,9 +59,9 @@ class _HomePageState extends State<HomePage>
       },
       child: Icon(
         Icons.navigation,
-        color: AppColors.companyColor,
+        color: AppColors.background,
       ),
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.companyColor,
     );
   }
 
