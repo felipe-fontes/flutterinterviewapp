@@ -23,56 +23,58 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.only(left: 30, right: 30),
-            child: Observer(
-              builder: (_) => Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Image.asset(
-                    "assets/images/logo.png",
-                    width: 180,
-                    // height: 0,
-                  ),
-                  TextField(
-                    onChanged: _loginController.setEmail,
-                    decoration: InputDecoration(hintText: "Enter Email"),
-                  ),
-                  TextField(
-                    onChanged: _loginController.setPassword,
-                    obscureText: true,
-                    decoration: InputDecoration(hintText: "Enter password"),
-                  ),
-                  Text(_loginController.errorMessage),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      child: ElevatedButton(
-                        onPressed: () => _loginController.login(),
-                        child: Text('Login'),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(left: 30, right: 30),
+              child: Observer(
+                builder: (_) => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Image.asset(
+                      "assets/images/logo.png",
+                      width: 180,
+                      // height: 0,
+                    ),
+                    TextField(
+                      onChanged: _loginController.setEmail,
+                      decoration: InputDecoration(hintText: "Enter Email"),
+                    ),
+                    TextField(
+                      onChanged: _loginController.setPassword,
+                      obscureText: true,
+                      decoration: InputDecoration(hintText: "Enter password"),
+                    ),
+                    Text(_loginController.errorMessage),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        child: ElevatedButton(
+                          onPressed: () => _loginController.login(),
+                          child: Text('Login'),
+                        ),
                       ),
                     ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CreateAccountPage()),
-                          );
-                        },
-                        child: Text('Create account'),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CreateAccountPage()),
+                            );
+                          },
+                          child: Text('Create account'),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

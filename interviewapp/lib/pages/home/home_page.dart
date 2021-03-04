@@ -30,36 +30,38 @@ class _HomePageState extends State<HomePage>
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _widgetOptions[_selectedIndex],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add your onPressed code here!
-        },
-        child: Icon(
-          Icons.navigation,
-          color: AppColors.companyColor,
-        ),
-        backgroundColor: AppColors.background,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: FluidNavBar(
-        animationFactor: 0.5,
-        style: FluidNavBarStyle(
-          barBackgroundColor: AppColors.companyColor,
-          iconBackgroundColor: AppColors.companyColor,
-          iconSelectedForegroundColor: AppColors.background,
-          iconUnselectedForegroundColor: AppColors.background,
-        ),
-        icons: [
-          FluidNavBarIcon(
-            svgPath: "assets/icons/forum-outline.svg",
+    return SafeArea(
+      child: Scaffold(
+        body: _widgetOptions[_selectedIndex],
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // Add your onPressed code here!
+          },
+          child: Icon(
+            Icons.navigation,
+            color: AppColors.companyColor,
           ),
-          FluidNavBarIcon(
-            svgPath: "assets/icons/rss.svg",
+          backgroundColor: AppColors.background,
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: FluidNavBar(
+          animationFactor: 0.5,
+          style: FluidNavBarStyle(
+            barBackgroundColor: AppColors.companyColor,
+            iconBackgroundColor: AppColors.companyColor,
+            iconSelectedForegroundColor: AppColors.background,
+            iconUnselectedForegroundColor: AppColors.background,
           ),
-        ],
-        onChange: (i) => setState(() => _selectedIndex = i),
+          icons: [
+            FluidNavBarIcon(
+              svgPath: "assets/icons/forum-outline.svg",
+            ),
+            FluidNavBarIcon(
+              svgPath: "assets/icons/rss.svg",
+            ),
+          ],
+          onChange: (i) => setState(() => _selectedIndex = i),
+        ),
       ),
     );
   }

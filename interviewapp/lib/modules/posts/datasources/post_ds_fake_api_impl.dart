@@ -8,6 +8,13 @@ class PostDataSourceImpl implements PostDataSource {
     PostModel(
         id: UniqueKey().toString(),
         user: UserModel(id: UniqueKey().toString(), name: 'UserA'),
+        date:
+            DateTime.now().subtract(Duration(days: 0, hours: 0, seconds: 200)),
+        message:
+            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard'),
+    PostModel(
+        id: UniqueKey().toString(),
+        user: UserModel(id: UniqueKey().toString(), name: 'UserA'),
         date: DateTime.now().subtract(Duration(days: 1, hours: 1, seconds: 1)),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard'),

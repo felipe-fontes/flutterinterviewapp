@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:interviewapp/pages/home/subpages/post/posts_controller.dart';
 import 'package:interviewapp/shared/utils/colors.dart';
-import 'package:intl/intl.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class PostsPage extends StatefulWidget {
   PostsPage({Key key}) : super(key: key);
@@ -63,8 +63,7 @@ class _PostsPageState extends State<PostsPage> {
                         flex: 1,
                       ),
                       Text(
-                        DateFormat('yyyy-MM-dd – hh:mm')
-                            .format(_postController.posts[i].date),
+                        timeago.format(_postController.posts[i].date),
                         style: TextStyle(
                           color: AppColors.background,
                           fontSize: 12,
