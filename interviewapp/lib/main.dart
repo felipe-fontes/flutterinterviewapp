@@ -13,6 +13,7 @@ void main() {
     theme: ThemeData(
       primaryColor: AppColors.companyColor,
       accentColor: AppColors.companyColorSmoth,
+      cursorColor: AppColors.companyColor,
     ),
   ));
 }

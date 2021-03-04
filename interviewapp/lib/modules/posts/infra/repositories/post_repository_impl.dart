@@ -8,8 +8,8 @@ class PostRepositoryImpl implements PostRepository {
   PostRepositoryImpl(this._postDataSouce);
 
   @override
-  Future<Post> add(String message, String userId, DateTime date) async {
-    return await _postDataSouce.add(message, userId, date);
+  Future<Post> add(String message) async {
+    return await _postDataSouce.add(message);
   }
 
   @override
@@ -24,7 +24,7 @@ class PostRepositoryImpl implements PostRepository {
   }
 
   @override
-  Future<Post> update(String postId, String message, DateTime date) async {
-    return await _postDataSouce.update(postId, message, date);
+  Future<Post> update(String postId, String message) async {
+    return await _postDataSouce.update(postId, message);
   }
 }

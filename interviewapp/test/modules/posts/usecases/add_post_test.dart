@@ -18,7 +18,7 @@ main() {
   final usecase = AddPostImpl(repository, userRepository);
 
   test('Should return Post', () async {
-    when(repository.add(any, any, any)).thenAnswer((_) async => Post());
+    when(repository.add(any)).thenAnswer((_) async => Post());
     when(userRepository.logged()).thenAnswer((_) async => User());
 
     final result = await usecase('test');
@@ -28,7 +28,7 @@ main() {
   });
 
   test('Should return UnableToAdd when repository return null', () async {
-    when(repository.add(any, any, any)).thenAnswer((_) async => null);
+    when(repository.add(any)).thenAnswer((_) async => null);
     when(userRepository.logged()).thenAnswer((_) async => User());
 
     final result = await usecase('test');
@@ -62,7 +62,7 @@ main() {
   });
 
   test('Should return Post when message lenght is 280 characteres', () async {
-    when(repository.add(any, any, any)).thenAnswer((_) async => Post());
+    when(repository.add(any)).thenAnswer((_) async => Post());
     when(userRepository.logged()).thenAnswer((_) async => User());
     final message =
         'UEiojC6w949I5dw6CMyjBVVE8HOcrbwwVKJkcLaFXOMyu64MObGJylggTLAFWzUKU9cUdvVPaCgDUTKxunhYENk2aMJzcxE0obcqMCtoW8UV1XUmAdgFu4B7NIayaeGjrgvqQHabjqf0iLptzj5a6FfsfJLrsvrWMyuhPDPAxeXpA9ClHhpoaAjQUMsQTKLl2U7gB1sOzianodqnWfQSOqhTyMdRCeiSD6mryABI38SIux7YkceBcuFIwyOScVUcQ4Yd4iBqcqCWFZGKz9MHjCZd';
@@ -75,7 +75,7 @@ main() {
 
   test('Should return UnableToAdd when repository throws any Exception',
       () async {
-    when(repository.add(any, any, any)).thenThrow(() => Exception());
+    when(repository.add(any)).thenThrow(() => Exception());
     when(userRepository.logged()).thenAnswer((_) async => User());
 
     final result = await usecase('test');
@@ -86,7 +86,7 @@ main() {
 
   test('Should return UnableToAdd when userRepository throws any Exception',
       () async {
-    when(repository.add(any, any, any)).thenAnswer((_) async => Post());
+    when(repository.add(any)).thenAnswer((_) async => Post());
     when(userRepository.logged()).thenThrow((_) async => Exception());
 
     final result = await usecase('test');
@@ -96,7 +96,7 @@ main() {
   });
 
   test('Should return UnableToAdd when userRepository return null', () async {
-    when(repository.add(any, any, any)).thenAnswer((_) async => Post());
+    when(repository.add(any)).thenAnswer((_) async => Post());
     when(userRepository.logged()).thenAnswer((_) async => null);
 
     final result = await usecase('test');

@@ -25,10 +25,11 @@ class _PostsPageState extends State<PostsPage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(bottom: 10),
       child: Observer(builder: (_) {
         return ListView.builder(
           itemCount: _postController.posts.length,
+          padding: EdgeInsets.only(bottom: 16, left: 8, right: 8),
           itemBuilder: (context, i) => Card(
             elevation: 5,
             shape: RoundedRectangleBorder(

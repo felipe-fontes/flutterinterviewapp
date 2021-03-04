@@ -1,9 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:interviewapp/modules/posts/infra/contracts/post_datasource.dart';
 import 'package:interviewapp/modules/posts/infra/models/post_model.dart';
+import 'package:interviewapp/modules/users/domain/contracts/user_repository.dart';
 import 'package:interviewapp/modules/users/infra/models/user_model.dart';
 
 class PostDataSourceImpl implements PostDataSource {
+  final UserRepository _userRepository;
+  PostDataSourceImpl(this._userRepository);
   List<PostModel> _db = <PostModel>[
     PostModel(
         id: UniqueKey().toString(),
@@ -53,15 +56,16 @@ class PostDataSourceImpl implements PostDataSource {
   ];
 
   @override
-  Future<PostModel> add(String message, String userId, DateTime date) {
+  Future<PostModel> add(String message) async {
+    final user = await _userRepository.logged();
     final post = PostModel(
         id: UniqueKey().toString(),
-        user: UserModel(id: userId),
-        date: date,
+        user: UserModel(name: user.name, id: user.id),
+        date: DateTime.now(),
         message: message);
 
     _db.add(post);
-    return Future.value(post);
+    return post;
   }
 
   @override
@@ -81,11 +85,11 @@ class PostDataSourceImpl implements PostDataSource {
   }
 
   @override
-  Future<PostModel> update(String postId, String message, DateTime date) {
+  Future<PostModel> update(String postId, String message) {
     final post = _db.firstWhere((x) => x.id == postId);
     if (post != null) {
-      final newPost =
-          PostModel(id: postId, user: post.user, date: date, message: message);
+      final newPost = PostModel(
+          id: postId, user: post.user, date: DateTime.now(), message: message);
       return Future.value(newPost);
     }
     return Future.value(null);

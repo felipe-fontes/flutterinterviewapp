@@ -11,17 +11,17 @@ main() {
   final repository = PostRepositoryImpl(dataSource);
 
   test('Add Should return PostModel', () async {
-    when(dataSource.add(any, any, any)).thenAnswer((_) async => PostModel());
+    when(dataSource.add(any)).thenAnswer((_) async => PostModel());
 
-    final result = await repository.add('teste', 'testeId', DateTime.now());
+    final result = await repository.add('teste');
 
     expect(result, isA<PostModel>());
   });
 
   test('Update Should return PostModel', () async {
-    when(dataSource.update(any, any, any)).thenAnswer((_) async => PostModel());
+    when(dataSource.update(any, any)).thenAnswer((_) async => PostModel());
 
-    final result = await repository.update('teste', 'testeId', DateTime.now());
+    final result = await repository.update('teste', 'teste');
 
     expect(result, isA<PostModel>());
   });

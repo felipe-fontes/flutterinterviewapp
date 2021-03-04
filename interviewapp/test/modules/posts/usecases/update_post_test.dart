@@ -18,7 +18,7 @@ main() {
   final usecase = UpdatePostImpl(repository, userRepository);
 
   test('Should update Post', () async {
-    when(repository.update(any, any, any)).thenAnswer((_) async => Post());
+    when(repository.update(any, any)).thenAnswer((_) async => Post());
     when(userRepository.logged()).thenAnswer((_) async => User(id: 'testId'));
     final post = Post(id: 'testePostId', user: User(id: 'testId'));
 
@@ -56,7 +56,7 @@ main() {
 
   test('Should return UnableToUpdate when postRepository update return null',
       () async {
-    when(repository.update(any, any, any)).thenAnswer((_) async => null);
+    when(repository.update(any, any)).thenAnswer((_) async => null);
     when(userRepository.logged()).thenAnswer((_) async => User(id: 'testId'));
 
     final post = Post(id: 'testPostId', user: User(id: 'testId'));
@@ -69,7 +69,7 @@ main() {
 
   test('Should return UnableToUpdate when userRepository throws any Exception',
       () async {
-    when(repository.update(any, any, any)).thenAnswer((_) async => Post());
+    when(repository.update(any, any)).thenAnswer((_) async => Post());
     when(userRepository.logged()).thenThrow((_) async => Exception());
     final post = Post(id: 'testPostId', user: User(id: 'testId'));
 
@@ -81,7 +81,7 @@ main() {
 
   test('Should return UnableToUpdate when postRepository throws any Exception',
       () async {
-    when(repository.update(any, any, any)).thenThrow((_) async => Exception());
+    when(repository.update(any, any)).thenThrow((_) async => Exception());
     when(userRepository.logged()).thenAnswer((_) async => User(id: 'testId'));
     final post = Post(id: 'testPostId', user: User(id: 'testId'));
 
@@ -122,7 +122,7 @@ main() {
   });
 
   test('Should return Post when message lenght is 280 characteres', () async {
-    when(repository.update(any, any, any)).thenAnswer((_) async => Post());
+    when(repository.update(any, any)).thenAnswer((_) async => Post());
     when(userRepository.logged()).thenAnswer((_) async => User(id: 'testId'));
     final post = Post(id: 'testPostId', user: User(id: 'testId'));
     final message =

@@ -50,7 +50,7 @@ void setup() {
   );
 
   GetIt.I.registerLazySingleton<PostDataSource>(
-    () => PostDataSourceImpl(),
+    () => PostDataSourceImpl(GetIt.I<UserRepository>()),
   );
   GetIt.I.registerLazySingleton<PostRepository>(
     () => PostRepositoryImpl(
@@ -115,17 +115,16 @@ void setup() {
     ),
   );
 
-  GetIt.I.registerLazySingleton<HomeController>(
-    () => HomeController(
-      GetIt.I<AddPost>(),
-      GetIt.I<GetPosts>(),
-      GetIt.I<GetNews>(),
-    ),
-  );
-
   GetIt.I.registerLazySingleton<PostsController>(
     () => PostsController(
       GetIt.I<GetPosts>(),
+    ),
+  );
+
+  GetIt.I.registerLazySingleton<HomeController>(
+    () => HomeController(
+      GetIt.I<AddPost>(),
+      GetIt.I<PostsController>(),
     ),
   );
 
