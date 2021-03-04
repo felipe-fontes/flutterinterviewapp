@@ -8,37 +8,39 @@ class PostDataSourceImpl implements PostDataSource {
     PostModel(
         id: UniqueKey().toString(),
         user: UserModel(id: UniqueKey().toString(), name: 'UserA'),
-        date: DateTime.now(),
+        date: DateTime.now().subtract(Duration(days: 1, hours: 1, seconds: 1)),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard'),
     PostModel(
         id: UniqueKey().toString(),
         user: UserModel(id: UniqueKey().toString(), name: 'UserB'),
-        date: DateTime.now(),
+        date:
+            DateTime.now().subtract(Duration(days: 2, hours: 21, seconds: 13)),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard'),
     PostModel(
         id: UniqueKey().toString(),
         user: UserModel(id: UniqueKey().toString(), name: 'UserC'),
-        date: DateTime.now(),
+        date: DateTime.now().subtract(Duration(days: 31, hours: 6, seconds: 4)),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard'),
     PostModel(
         id: UniqueKey().toString(),
         user: UserModel(id: UniqueKey().toString(), name: 'UserA'),
-        date: DateTime.now(),
+        date: DateTime.now()
+            .subtract(Duration(days: 645, hours: 56, seconds: 32)),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard'),
     PostModel(
         id: UniqueKey().toString(),
         user: UserModel(id: UniqueKey().toString(), name: 'UserA'),
-        date: DateTime.now(),
+        date: DateTime.now().subtract(Duration(days: 7, hours: 2, seconds: 5)),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard'),
     PostModel(
         id: UniqueKey().toString(),
         user: UserModel(id: UniqueKey().toString(), name: 'UserB'),
-        date: DateTime.now(),
+        date: DateTime.now().subtract(Duration(days: 6, hours: 7, seconds: 8)),
         message:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard')
   ];
@@ -63,6 +65,11 @@ class PostDataSourceImpl implements PostDataSource {
 
   @override
   Future<List<PostModel>> getAll() {
+    _db.sort(
+      (a, b) {
+        return a.date.isBefore(b.date) ? 1 : 0;
+      },
+    );
     return Future.value(_db);
   }
 

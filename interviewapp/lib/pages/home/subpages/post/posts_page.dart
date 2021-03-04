@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:interviewapp/pages/home/subpages/post/posts_controller.dart';
 import 'package:interviewapp/shared/utils/colors.dart';
+import 'package:intl/intl.dart';
 
 class PostsPage extends StatefulWidget {
   PostsPage({Key key}) : super(key: key);
@@ -49,12 +50,27 @@ class _PostsPageState extends State<PostsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    _postController.posts[i].user.name,
-                    style: TextStyle(
-                      color: AppColors.background,
-                      fontSize: 14,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        _postController.posts[i].user.name,
+                        style: TextStyle(
+                          color: AppColors.background,
+                          fontSize: 14,
+                        ),
+                      ),
+                      Spacer(
+                        flex: 1,
+                      ),
+                      Text(
+                        DateFormat('yyyy-MM-dd – hh:mm')
+                            .format(_postController.posts[i].date),
+                        style: TextStyle(
+                          color: AppColors.background,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 10,
