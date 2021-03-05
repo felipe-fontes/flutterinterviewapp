@@ -12,15 +12,30 @@ mixin _$PostsController on _PostsControllerBase, Store {
   final _$postsAtom = Atom(name: '_PostsControllerBase.posts');
 
   @override
-  ObservableList<Post> get posts {
+  ObservableList<PostDto> get posts {
     _$postsAtom.reportRead();
     return super.posts;
   }
 
   @override
-  set posts(ObservableList<Post> value) {
+  set posts(ObservableList<PostDto> value) {
     _$postsAtom.reportWrite(value, super.posts, () {
       super.posts = value;
+    });
+  }
+
+  final _$errorMessageAtom = Atom(name: '_PostsControllerBase.errorMessage');
+
+  @override
+  String get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
     });
   }
 
@@ -31,10 +46,34 @@ mixin _$PostsController on _PostsControllerBase, Store {
     return _$getPostsAsyncAction.run(() => super.getPosts());
   }
 
+  final _$sendPostAsyncAction = AsyncAction('_PostsControllerBase.sendPost');
+
+  @override
+  Future<bool> sendPost(String message) {
+    return _$sendPostAsyncAction.run(() => super.sendPost(message));
+  }
+
+  final _$deletePostAsyncAction =
+      AsyncAction('_PostsControllerBase.deletePost');
+
+  @override
+  Future<bool> deletePost(PostDto post) {
+    return _$deletePostAsyncAction.run(() => super.deletePost(post));
+  }
+
+  final _$updatePostAsyncAction =
+      AsyncAction('_PostsControllerBase.updatePost');
+
+  @override
+  Future<bool> updatePost(PostDto post, String message) {
+    return _$updatePostAsyncAction.run(() => super.updatePost(post, message));
+  }
+
   @override
   String toString() {
     return '''
-posts: ${posts}
+posts: ${posts},
+errorMessage: ${errorMessage}
     ''';
   }
 }

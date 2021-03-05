@@ -90,6 +90,9 @@ class PostDataSourceImpl implements PostDataSource {
     if (post != null) {
       final newPost = PostModel(
           id: postId, user: post.user, date: DateTime.now(), message: message);
+      final index = _db.indexOf(post);
+      _db[index] = newPost;
+
       return Future.value(newPost);
     }
     return Future.value(null);

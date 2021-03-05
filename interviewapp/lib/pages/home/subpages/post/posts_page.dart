@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:interviewapp/pages/home/subpages/post/posts_controller.dart';
+import 'package:interviewapp/pages/home/subpages/utils/show_message_dialog.dart';
 import 'package:interviewapp/shared/utils/colors.dart';
 import 'package:interviewapp/widgets/gradient_card.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -14,12 +15,17 @@ class PostsPage extends StatefulWidget {
 }
 
 class _PostsPageState extends State<PostsPage> {
-  PostsController _postController;
+  PostsController _postsController;
+
+  TextEditingController _messageController;
+  FocusNode inputFieldNode;
 
   @override
   void initState() {
-    _postController = GetIt.I<PostsController>();
-    _postController.getPosts();
+    _postsController = GetIt.I<PostsController>();
+    _postsController.getPosts();
+    _messageController = TextEditingController();
+    inputFieldNode = FocusNode();
     super.initState();
   }
 
@@ -29,7 +35,7 @@ class _PostsPageState extends State<PostsPage> {
       padding: const EdgeInsets.only(bottom: 10),
       child: Observer(builder: (_) {
         return ListView.separated(
-          itemCount: _postController.posts.length,
+          itemCount: _postsController.posts.length,
           padding: EdgeInsets.only(bottom: 16, left: 8, right: 8),
           separatorBuilder: (c, i) => SizedBox(
             height: 20,
@@ -46,6 +52,14 @@ class _PostsPageState extends State<PostsPage> {
     );
   }
 
+  void deleteAction() {
+    print('DELETE');
+  }
+
+  void updateAction() {
+    print('UPDATE');
+  }
+
   Container buildCardContent(int i) {
     return Container(
       padding: EdgeInsets.all(
@@ -57,7 +71,7 @@ class _PostsPageState extends State<PostsPage> {
           Row(
             children: [
               Text(
-                _postController.posts[i].user.name,
+                _postsController.posts[i].user.name,
                 style: TextStyle(
                   color: AppColors.background,
                   fontSize: 14,
@@ -67,7 +81,7 @@ class _PostsPageState extends State<PostsPage> {
                 flex: 1,
               ),
               Text(
-                timeago.format(_postController.posts[i].date),
+                timeago.format(_postsController.posts[i].date),
                 style: TextStyle(
                   color: AppColors.background,
                   fontSize: 12,
@@ -79,13 +93,54 @@ class _PostsPageState extends State<PostsPage> {
             height: 10,
           ),
           Text(
-            _postController.posts[i].message,
+            _postsController.posts[i].message,
             style: TextStyle(
               color: AppColors.background,
             ),
           ),
+          buildCardActions(_postsController.posts[i]),
         ],
       ),
+    );
+  }
+
+  Widget buildCardActions(PostDto post) {
+    if (!post.userPost) return Container();
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        IconButton(
+          icon: Icon(
+            Icons.edit,
+            color: AppColors.background,
+          ),
+          color: Colors.white,
+          onPressed: () => showMessageDialog(
+            context,
+            _messageController,
+            this.inputFieldNode,
+            _postsController,
+            (text) async {
+              final success = await _postsController.updatePost(post, text);
+              if (success) {
+                _messageController.text = '';
+                Navigator.pop(context);
+              } else {
+                inputFieldNode.requestFocus();
+              }
+            },
+          ),
+        ),
+        IconButton(
+          icon: Icon(
+            Icons.delete,
+            color: AppColors.background,
+          ),
+          color: Colors.white,
+          onPressed: () => _postsController.deletePost(post),
+        ),
+      ],
     );
   }
 }

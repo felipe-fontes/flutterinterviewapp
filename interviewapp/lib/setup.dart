@@ -22,7 +22,6 @@ import 'package:interviewapp/modules/users/infra/contracts/user_datasource.dart'
 import 'package:interviewapp/modules/users/infra/repositories/user_repository_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:interviewapp/pages/createAccount/create_account_controller.dart';
-import 'package:interviewapp/pages/home/home_controller.dart';
 import 'package:interviewapp/pages/home/subpages/news/news_controller.dart';
 import 'package:interviewapp/pages/home/subpages/post/posts_controller.dart';
 import 'package:interviewapp/pages/login/login_controller.dart';
@@ -117,14 +116,11 @@ void setup() {
 
   GetIt.I.registerLazySingleton<PostsController>(
     () => PostsController(
-      GetIt.I<GetPosts>(),
-    ),
-  );
-
-  GetIt.I.registerLazySingleton<HomeController>(
-    () => HomeController(
       GetIt.I<AddPost>(),
-      GetIt.I<PostsController>(),
+      GetIt.I<GetPosts>(),
+      GetIt.I<GetLoggedUser>(),
+      GetIt.I<DeletePost>(),
+      GetIt.I<UpdatePost>(),
     ),
   );
 
