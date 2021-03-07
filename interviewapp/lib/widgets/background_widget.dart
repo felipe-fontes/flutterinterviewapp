@@ -5,10 +5,10 @@ class BackgroundWidget extends StatefulWidget {
   BackgroundWidget({Key key}) : super(key: key);
 
   @override
-  _BackgroundWidgetState createState() => _BackgroundWidgetState();
+  BackgroundWidgetState createState() => BackgroundWidgetState();
 }
 
-class _BackgroundWidgetState extends State<BackgroundWidget> {
+class BackgroundWidgetState extends State<BackgroundWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,8 +19,8 @@ class _BackgroundWidgetState extends State<BackgroundWidget> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                AppColors.companyColor,
-                AppColors.background,
+                AppColors.boticario100,
+                AppColors.backgroundWhite,
               ],
             ),
           ),

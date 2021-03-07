@@ -35,9 +35,9 @@ class _NewsPageState extends State<NewsPage> {
             height: 20,
           ),
           itemBuilder: (context, i) => GradientCard(
-            startColor: AppColors.companyColor,
-            endColor: AppColors.companyColorSmoth,
-            shadowColor: AppColors.companyColor.withOpacity(0.9),
+            startColor: AppColors.backgroundWhite,
+            endColor: AppColors.backgroundWhite,
+            shadowColor: AppColors.boticario100.withOpacity(0.9),
             bolderRadius: 10,
             child: buildCardContent(i),
           ),
@@ -59,7 +59,7 @@ class _NewsPageState extends State<NewsPage> {
               Text(
                 _newsController.news[i].name,
                 style: TextStyle(
-                  color: AppColors.background,
+                  color: AppColors.backgroundWhite,
                   fontSize: 14,
                 ),
               ),
@@ -69,7 +69,7 @@ class _NewsPageState extends State<NewsPage> {
               Text(
                 timeago.format(_newsController.news[i].date),
                 style: TextStyle(
-                  color: AppColors.background,
+                  color: AppColors.backgroundWhite,
                   fontSize: 12,
                 ),
               ),
@@ -81,7 +81,7 @@ class _NewsPageState extends State<NewsPage> {
           Text(
             _newsController.news[i].message,
             style: TextStyle(
-              color: AppColors.background,
+              color: AppColors.backgroundWhite,
             ),
           ),
         ],

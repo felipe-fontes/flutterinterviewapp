@@ -74,9 +74,9 @@ class _HomePageState extends State<HomePage>
       },
       child: Icon(
         Icons.navigation,
-        color: AppColors.background,
+        color: AppColors.backgroundWhite,
       ),
-      backgroundColor: AppColors.companyColor,
+      backgroundColor: AppColors.boticario100,
     );
   }
 
@@ -84,10 +84,10 @@ class _HomePageState extends State<HomePage>
     return FluidNavBar(
       animationFactor: 0.5,
       style: FluidNavBarStyle(
-        barBackgroundColor: AppColors.companyColor,
-        iconBackgroundColor: AppColors.companyColor,
-        iconSelectedForegroundColor: AppColors.background,
-        iconUnselectedForegroundColor: AppColors.background,
+        barBackgroundColor: AppColors.boticario100,
+        iconBackgroundColor: AppColors.boticario100,
+        iconSelectedForegroundColor: AppColors.backgroundWhite,
+        iconUnselectedForegroundColor: AppColors.backgroundWhite,
       ),
       icons: [
         FluidNavBarIcon(

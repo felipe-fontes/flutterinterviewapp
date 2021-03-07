@@ -16,7 +16,7 @@ void showMessageDialog(
         top: Radius.circular(10),
       ),
     ),
-    backgroundColor: AppColors.background,
+    backgroundColor: AppColors.backgroundWhite,
     context: context,
     isScrollControlled: true,
     builder: (context) => Padding(

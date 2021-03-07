@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:interviewapp/pages/createAccount/create_account_page.dart';
+import 'package:interviewapp/shared/utils/colors.dart';
+import 'package:interviewapp/widgets/common_button.dart';
+import 'package:interviewapp/widgets/common_text_field.dart';
 
 import 'login_controller.dart';
 
@@ -33,35 +36,42 @@ class _LoginPageState extends State<LoginPage> {
               child: Observer(
                 builder: (_) => Column(
                   mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
+                    SizedBox(
+                      height: 80,
+                    ),
                     Image.asset(
                       "assets/images/logo.png",
-                      width: 180,
-                      // height: 0,
+                      height: 100,
+                      color: AppColors.boticario100,
                     ),
-                    TextField(
+                    SizedBox(
+                      height: 80,
+                    ),
+                    CommonTextField(
+                      label: 'Email',
                       onChanged: _loginController.setEmail,
-                      decoration: InputDecoration(hintText: "Enter Email"),
                     ),
-                    TextField(
-                      onChanged: _loginController.setPassword,
+                    SizedBox(
+                      height: 12,
+                    ),
+                    CommonTextField(
+                      label: 'Password',
                       obscureText: true,
-                      decoration: InputDecoration(hintText: "Enter password"),
+                      onChanged: _loginController.setPassword,
                     ),
                     Text(_loginController.errorMessage),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        child: ElevatedButton(
+                    Row(
+                      children: [
+                        CommonButton(
                           onPressed: () => _loginController.login(),
-                          child: Text('Login'),
+                          text: 'Login',
                         ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        child: ElevatedButton(
+                        SizedBox(
+                          width: 10,
+                        ),
+                        CommonButton(
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -69,9 +79,12 @@ class _LoginPageState extends State<LoginPage> {
                                   builder: (context) => CreateAccountPage()),
                             );
                           },
-                          child: Text('Create account'),
+                          text: 'Create account',
                         ),
-                      ),
+                        Spacer(
+                          flex: 1,
+                        ),
+                      ],
                     ),
                   ],
                 ),

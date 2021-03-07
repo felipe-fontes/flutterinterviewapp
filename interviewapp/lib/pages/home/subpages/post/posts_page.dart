@@ -41,9 +41,9 @@ class _PostsPageState extends State<PostsPage> {
             height: 20,
           ),
           itemBuilder: (context, i) => GradientCard(
-            startColor: AppColors.companyColor,
-            endColor: AppColors.companyColorSmoth,
-            shadowColor: AppColors.companyColor.withOpacity(0.9),
+            startColor: AppColors.boticario100,
+            endColor: AppColors.boticario100,
+            shadowColor: AppColors.boticario100.withOpacity(0.9),
             bolderRadius: 10,
             child: buildCardContent(i),
           ),
@@ -73,7 +73,7 @@ class _PostsPageState extends State<PostsPage> {
               Text(
                 _postsController.posts[i].user.name,
                 style: TextStyle(
-                  color: AppColors.background,
+                  color: AppColors.backgroundWhite,
                   fontSize: 14,
                 ),
               ),
@@ -83,7 +83,7 @@ class _PostsPageState extends State<PostsPage> {
               Text(
                 timeago.format(_postsController.posts[i].date),
                 style: TextStyle(
-                  color: AppColors.background,
+                  color: AppColors.backgroundWhite,
                   fontSize: 12,
                 ),
               ),
@@ -95,7 +95,7 @@ class _PostsPageState extends State<PostsPage> {
           Text(
             _postsController.posts[i].message,
             style: TextStyle(
-              color: AppColors.background,
+              color: AppColors.backgroundWhite,
             ),
           ),
           buildCardActions(_postsController.posts[i]),
@@ -113,7 +113,7 @@ class _PostsPageState extends State<PostsPage> {
         IconButton(
           icon: Icon(
             Icons.edit,
-            color: AppColors.background,
+            color: AppColors.backgroundWhite,
           ),
           color: Colors.white,
           onPressed: () => showMessageDialog(
@@ -135,7 +135,7 @@ class _PostsPageState extends State<PostsPage> {
         IconButton(
           icon: Icon(
             Icons.delete,
-            color: AppColors.background,
+            color: AppColors.backgroundWhite,
           ),
           color: Colors.white,
           onPressed: () => _postsController.deletePost(post),

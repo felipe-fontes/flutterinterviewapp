@@ -17,8 +17,6 @@ class UserDataSourceFakeApiImpl implements UserDataSource {
   @override
   Future<UserModel> create(String email, String password, String name) async {
     final db = await getDb();
-    db.clear();
-    saveDb(db);
     final foundUser = db.firstWhere(
       (x) => x.email.toLowerCase() == email.toLowerCase(),
       orElse: () => null,
@@ -72,5 +70,11 @@ class UserDataSourceFakeApiImpl implements UserDataSource {
     List<UserModel> users =
         List<UserModel>.from(map.map((model) => UserModel.fromJson(model)));
     return users;
+  }
+
+  Future clearDb() async {
+    final db = await getDb();
+    db.clear();
+    saveDb(db);
   }
 }

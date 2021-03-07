@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:interviewapp/shared/utils/colors.dart';
+import 'package:interviewapp/widgets/common_button.dart';
+import 'package:interviewapp/widgets/common_text_field.dart';
 
 import 'create_account_controller.dart';
 
@@ -11,7 +14,10 @@ class CreateAccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       backgroundColor: Colors.white,
       body: Center(
         child: SingleChildScrollView(
@@ -19,38 +25,58 @@ class CreateAccountPage extends StatelessWidget {
             padding: EdgeInsets.only(left: 30, right: 30),
             child: Observer(
               builder: (_) => Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Image.asset(
                     "assets/images/logo.png",
-                    width: 180,
-                    // height: 0,
+                    height: 100,
+                    color: AppColors.boticario100,
                   ),
-                  TextField(
+                  SizedBox(
+                    height: 50,
+                  ),
+                  CommonTextField(
+                    label: 'Email',
                     onChanged: _createAccountController.setEmail,
-                    decoration: InputDecoration(hintText: "Enter Email"),
                   ),
-                  TextField(
-                    onChanged: _createAccountController.setPassword,
+                  SizedBox(
+                    height: 12,
+                  ),
+                  CommonTextField(
+                    label: 'Password',
                     obscureText: true,
-                    decoration: InputDecoration(hintText: "Enter password"),
+                    onChanged: _createAccountController.setPassword,
                   ),
-                  TextField(
+                  SizedBox(
+                    height: 12,
+                  ),
+                  CommonTextField(
+                    label: 'Username',
                     onChanged: _createAccountController.setName,
-                    decoration: InputDecoration(hintText: "Enter Username"),
                   ),
-                  Text(_createAccountController.errorMessage),
+                  SizedBox(
+                    height: 12,
+                  ),
                   Align(
-                    alignment: Alignment.center,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      _createAccountController.errorMessage,
+                      textAlign: TextAlign.start,
+                      style: TextStyle(color: Theme.of(context).errorColor),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
                     child: Container(
-                      child: ElevatedButton(
+                      child: CommonButton(
                         onPressed: () async {
                           final user = await _createAccountController.create();
                           if (user != null) {
                             Navigator.pop(context);
                           }
                         },
-                        child: Text('Create account'),
+                        text: 'Create account',
                       ),
                     ),
                   ),
