@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:interviewapp/shared/utils/colors.dart';
 
 class CommonTextField extends StatefulWidget {
   const CommonTextField({
@@ -44,7 +45,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
           labelStyle: TextStyle(
             color: _focusNode.hasFocus
                 ? Theme.of(context).accentColor
-                : Colors.grey[600],
+                : AppColors.disabled,
           ),
         ),
         focusNode: _focusNode,

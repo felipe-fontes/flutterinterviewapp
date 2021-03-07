@@ -54,10 +54,15 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/news.png
+    - assets/images/developer.png
+    - assets/images/puzzle.png
     - assets/images/logo.png
-    - assets/icons/write.png
-    - assets/icons/post.png
-    - assets/icons/oboticario.png
+    - assets/icons/icon_edit.png
+    - assets/icons/icon_newpost.png
+    - assets/icons/icon_post.png
+    - assets/icons/icon_trash.png
+    - assets/icons/icon_oboticario.png
 
   fonts:
   - family: NunitoSans

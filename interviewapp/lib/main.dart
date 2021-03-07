@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:interviewapp/modules/users/domain/contracts/user_repository.dart';
 import 'package:interviewapp/pages/home/home_page.dart';
-import 'package:interviewapp/pages/login/login_page.dart';
 import 'package:interviewapp/setup.dart';
 import 'package:interviewapp/shared/utils/colors.dart';
+import 'package:interviewapp/widgets/carrousel_guide.dart';
+import 'package:interviewapp/widgets/my_splashscreen.dart';
 
 void main() {
   setup();
-  runApp(MyApp());
+  runApp(MySplashScreen());
 }
 
 class MyApp extends StatefulWidget {
@@ -21,10 +22,8 @@ class _MyAppState extends State<MyApp> {
     final _rep = GetIt.I<UserRepository>();
     var user = await _rep.logged();
 
-    //await Future.delayed(Duration(seconds: 10));
-
     if (user == null)
-      return new LoginPage();
+      return new CarrouselGuide();
     else
       return new HomePage();
   }
@@ -32,20 +31,24 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: FutureBuilder<Widget>(
-          future: loadFromFuture(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return snapshot.data;
-            }
-
-            return Text('Loading');
-          },
-        ),
-      ),
+      home: CarrouselGuide(),
       theme: _buildTheme(),
+    );
+  }
+
+  Scaffold _buildApp() {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: FutureBuilder<Widget>(
+        future: loadFromFuture(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return snapshot.data;
+          }
+
+          return Text('Loading');
+        },
+      ),
     );
   }
 
@@ -66,7 +69,7 @@ class _MyAppState extends State<MyApp> {
       scaffoldBackgroundColor: AppColors.backgroundWhite,
       cardColor: AppColors.backgroundWhite,
       textSelectionColor: AppColors.boticario50,
-      errorColor: Colors.red,
+      errorColor: AppColors.error,
       textTheme: _buildTextTheme(base.textTheme),
       primaryTextTheme: _buildTextTheme(base.primaryTextTheme),
       accentTextTheme: _buildTextTheme(base.accentTextTheme),

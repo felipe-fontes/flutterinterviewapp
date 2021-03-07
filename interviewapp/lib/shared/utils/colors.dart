@@ -6,4 +6,6 @@ class AppColors {
   static Color get boticario300 => Color(0xff3e5a4b);
   static Color get boticario900 => Color(0xff2c2b2b);
   static Color get backgroundWhite => Color(0xffffffff);
+  static Color get error => Colors.red;
+  static Color get disabled => Colors.grey[600];
 }
