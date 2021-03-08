@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:interviewapp/modules/users/domain/errors/errors.dart';
+import 'package:interviewapp/shared/utils/strings.dart';
 
 class BaseUser {
   bool _validateEmail(String email) {
@@ -15,7 +16,7 @@ class BaseUser {
 
   Either<InvalidEmail, bool> validateEmail(String email) {
     if (email == null || email.isEmpty || !_validateEmail(email)) {
-      return Left(InvalidEmail('A valid email is required'));
+      return Left(InvalidEmail(AppString.emailRequired));
     }
 
     return Right(true);
@@ -23,8 +24,7 @@ class BaseUser {
 
   Either<InvalidPassword, bool> validatePassword(String password) {
     if (password == null || password.isEmpty || !_validatePassword(password)) {
-      return Left(InvalidPassword(
-          'A valid password is required, it needs to be more than 6 characteres'));
+      return Left(InvalidPassword(AppString.invalidPassword));
     }
 
     return Right(true);

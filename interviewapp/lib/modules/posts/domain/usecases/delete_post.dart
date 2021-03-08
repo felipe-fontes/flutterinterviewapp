@@ -3,6 +3,7 @@ import 'package:interviewapp/modules/posts/domain/contracts/post_repository.dart
 import 'package:interviewapp/modules/posts/domain/entities/post.dart';
 import 'package:interviewapp/modules/posts/domain/errors/errors.dart';
 import 'package:interviewapp/modules/users/domain/contracts/user_repository.dart';
+import 'package:interviewapp/shared/utils/strings.dart';
 
 abstract class DeletePost {
   Future<Either<PostError, bool>> call(Post post);
@@ -22,24 +23,23 @@ class DeletePostImpl implements DeletePost {
 
       final user = await _userRepository.logged();
       if (user == null) {
-        return Left(
-            UnableToDelete('You need to be logged in order to add post!'));
+        return Left(UnableToDelete(AppString.deletePostUserNotFound));
       }
 
       if (user.id != post.user.id) {
-        return Left(UnableToDelete('You can`t delete somebody else post!'));
+        return Left(UnableToDelete(AppString.deleteOtherPeoplePostError));
       }
 
       final response = await _postRepository.delete(post.id);
 
       if (response == null || !response) {
-        return Left(UnableToDelete('Something went wrong, try again later!'));
+        return Left(UnableToDelete(AppString.genericError));
       }
 
       return Right(response);
     } catch (ex) {
       print(ex);
-      return Left(UnableToDelete('Ops and error ocurred, try again later!'));
+      return Left(UnableToDelete(AppString.genericCriticalError));
     }
   }
 }

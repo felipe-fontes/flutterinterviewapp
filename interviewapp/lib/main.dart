@@ -1,54 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:interviewapp/modules/users/domain/contracts/user_repository.dart';
-import 'package:interviewapp/pages/home/home_page.dart';
 import 'package:interviewapp/setup.dart';
 import 'package:interviewapp/shared/utils/colors.dart';
-import 'package:interviewapp/widgets/carrousel_guide.dart';
 import 'package:interviewapp/widgets/my_splashscreen.dart';
 
 void main() {
   setup();
-  runApp(MySplashScreen());
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => new _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  Future<Widget> loadFromFuture() async {
-    final _rep = GetIt.I<UserRepository>();
-    var user = await _rep.logged();
-
-    if (user == null)
-      return new CarrouselGuide();
-    else
-      return new HomePage();
-  }
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CarrouselGuide(),
-      theme: _buildTheme(),
+    return _asyncAppLoad();
+  }
+
+  FutureBuilder<Widget> _asyncAppLoad() {
+    return FutureBuilder(
+      // Replace the 3 second delay with your initialization code:
+      future: getFirstPage(),
+      builder: (context, AsyncSnapshot snapshot) {
+        // Show splash screen while waiting for app resources to load:
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return MaterialApp(home: Splash());
+        } else {
+          // Loading is done, return the app:
+          return _buildApp(snapshot.data);
+        }
+      },
     );
   }
 
-  Scaffold _buildApp() {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: FutureBuilder<Widget>(
-        future: loadFromFuture(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return snapshot.data;
-          }
-
-          return Text('Loading');
-        },
-      ),
+  Widget _buildApp(Widget home) {
+    return MaterialApp(
+      home: home,
+      theme: _buildTheme(),
     );
   }
 

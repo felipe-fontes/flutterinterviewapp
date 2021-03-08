@@ -3,6 +3,7 @@ import 'package:interviewapp/modules/users/domain/contracts/user_repository.dart
 import 'package:interviewapp/modules/users/domain/entities/user.dart';
 import 'package:interviewapp/modules/users/domain/errors/errors.dart';
 import 'package:interviewapp/modules/users/domain/usecases/base_user.dart';
+import 'package:interviewapp/shared/utils/strings.dart';
 
 abstract class CreateUser {
   Future<Either<UserError, User>> call(
@@ -30,19 +31,19 @@ class CreateUserImpl extends BaseUser implements CreateUser {
       }
 
       if (name == null || name.isEmpty) {
-        return Left(InvalidName('A valid name is required'));
+        return Left(InvalidName(AppString.nameRequired));
       }
 
       final response = await _userRepository.create(email, password, name);
 
       if (response == null) {
-        return Left(UnableToCreate('Something went wrong, try again later!'));
+        return Left(UnableToCreate(AppString.genericError));
       }
 
       return Right(response);
     } catch (ex) {
       print(ex);
-      return Left(UnableToCreate('Ops and error ocurred, try again later!'));
+      return Left(UnableToCreate(AppString.genericCriticalError));
     }
   }
 }

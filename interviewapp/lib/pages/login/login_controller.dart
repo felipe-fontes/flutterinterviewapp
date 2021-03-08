@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:interviewapp/modules/users/domain/entities/user.dart';
 import 'package:interviewapp/modules/users/domain/errors/errors.dart';
 import 'package:interviewapp/modules/users/domain/usecases/login.dart';
 import 'package:mobx/mobx.dart';
@@ -42,17 +43,18 @@ abstract class _LoginControllerBase with Store {
   }
 
   @action
-  Future login() async {
+  Future<User> login() async {
     try {
       if (email == null || password == null) {
         error = true;
-        return;
+        return null;
       }
 
       final loginResult = await _login(email, password);
 
       if (loginResult.isRight()) {
         logged = true;
+        return loginResult | null;
       } else {
         UserError loginError = loginResult.fold(id, null);
         errorMessage = loginError.message;
@@ -62,5 +64,7 @@ abstract class _LoginControllerBase with Store {
       print(ex);
       error = true;
     }
+
+    return null;
   }
 }

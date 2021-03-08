@@ -21,6 +21,5 @@ abstract class _NewsControllerBase with Store {
       final list = response | null;
       news.addAll(list);
     }
-    print(response);
   }
 }

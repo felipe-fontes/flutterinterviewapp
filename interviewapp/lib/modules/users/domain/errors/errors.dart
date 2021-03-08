@@ -34,6 +34,12 @@ class UnableToLogin extends UserError {
   UnableToLogin(this.message) : super(message);
 }
 
+class UnableToLogout extends UserError {
+  final String message;
+
+  UnableToLogout(this.message) : super(message);
+}
+
 class InvalidEmail extends UserError {
   final String message;
 

@@ -24,6 +24,21 @@ mixin _$PostsController on _PostsControllerBase, Store {
     });
   }
 
+  final _$userAtom = Atom(name: '_PostsControllerBase.user');
+
+  @override
+  User get user {
+    _$userAtom.reportRead();
+    return super.user;
+  }
+
+  @override
+  set user(User value) {
+    _$userAtom.reportWrite(value, super.user, () {
+      super.user = value;
+    });
+  }
+
   final _$errorMessageAtom = Atom(name: '_PostsControllerBase.errorMessage');
 
   @override
@@ -69,10 +84,18 @@ mixin _$PostsController on _PostsControllerBase, Store {
     return _$updatePostAsyncAction.run(() => super.updatePost(post, message));
   }
 
+  final _$logoutAsyncAction = AsyncAction('_PostsControllerBase.logout');
+
+  @override
+  Future<bool> logout() {
+    return _$logoutAsyncAction.run(() => super.logout());
+  }
+
   @override
   String toString() {
     return '''
 posts: ${posts},
+user: ${user},
 errorMessage: ${errorMessage}
     ''';
   }

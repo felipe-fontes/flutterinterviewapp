@@ -4,6 +4,7 @@ import 'package:interviewapp/modules/posts/domain/entities/post.dart';
 import 'package:interviewapp/modules/posts/domain/errors/errors.dart';
 import 'package:interviewapp/modules/posts/domain/usecases/base_post.dart';
 import 'package:interviewapp/modules/users/domain/contracts/user_repository.dart';
+import 'package:interviewapp/shared/utils/strings.dart';
 
 abstract class AddPost {
   Future<Either<PostError, Post>> call(String message);
@@ -25,19 +26,19 @@ class AddPostImpl extends BasePost implements AddPost {
 
       final user = await _userRepository.logged();
       if (user == null) {
-        return Left(UnableToAdd('You need to be logged in order to add post!'));
+        return Left(UnableToAdd(AppString.addPostUserNotFound));
       }
 
       final response = await _postRepository.add(message);
 
       if (response == null) {
-        return Left(UnableToAdd('Something went wrong, try again later!'));
+        return Left(UnableToAdd(AppString.genericError));
       }
 
       return Right(response);
     } catch (ex) {
       print(ex);
-      return Left(UnableToAdd('Ops and error ocurred, try again later!'));
+      return Left(UnableToAdd(AppString.genericCriticalError));
     }
   }
 }

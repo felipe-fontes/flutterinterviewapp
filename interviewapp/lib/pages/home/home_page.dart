@@ -1,6 +1,7 @@
-import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:interviewapp/pages/home/subpages/news/news_controller.dart';
 import 'package:interviewapp/pages/home/subpages/news/news_page.dart';
 import 'package:interviewapp/pages/home/subpages/post/posts_controller.dart';
 import 'package:interviewapp/pages/home/subpages/post/posts_page.dart';
@@ -20,14 +21,22 @@ class _HomePageState extends State<HomePage>
   TextEditingController _messageController;
 
   FocusNode inputFieldNode;
+  int activeIndex = 0;
   @override
   void initState() {
     _postsController = GetIt.I<PostsController>();
+    final newsController = GetIt.I<NewsController>();
+    newsController.getNews();
     _messageController = TextEditingController();
     inputFieldNode = FocusNode();
 
     super.initState();
   }
+
+  final iconList = [
+    Icons.forum_outlined,
+    Icons.rss_feed_outlined,
+  ];
 
   @override
   void dispose() {
@@ -40,12 +49,12 @@ class _HomePageState extends State<HomePage>
     NewsPage(),
   ];
 
-  int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: _widgetOptions[_selectedIndex],
+        extendBody: true,
+        body: _widgetOptions[activeIndex],
         floatingActionButton: buildActionButton(context),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: buildNavBar(),
@@ -72,32 +81,27 @@ class _HomePageState extends State<HomePage>
           },
         );
       },
-      child: Icon(
-        Icons.navigation,
+      child: Image.asset(
+        'assets/icons/icon_newpost.png',
+        width: 30,
+        height: 30,
         color: AppColors.backgroundWhite,
       ),
-      backgroundColor: AppColors.boticario100,
+      backgroundColor: AppColors.boticario900,
     );
   }
 
-  FluidNavBar buildNavBar() {
-    return FluidNavBar(
-      animationFactor: 0.5,
-      style: FluidNavBarStyle(
-        barBackgroundColor: AppColors.boticario100,
-        iconBackgroundColor: AppColors.boticario100,
-        iconSelectedForegroundColor: AppColors.backgroundWhite,
-        iconUnselectedForegroundColor: AppColors.backgroundWhite,
-      ),
-      icons: [
-        FluidNavBarIcon(
-          svgPath: "assets/icons/forum-outline.svg",
-        ),
-        FluidNavBarIcon(
-          svgPath: "assets/icons/rss.svg",
-        ),
-      ],
-      onChange: (i) => setState(() => _selectedIndex = i),
+  AnimatedBottomNavigationBar buildNavBar() {
+    return AnimatedBottomNavigationBar(
+      icons: iconList,
+      activeIndex: activeIndex,
+      gapLocation: GapLocation.center,
+      notchSmoothness: NotchSmoothness.defaultEdge,
+      backgroundColor: AppColors.boticario50,
+      leftCornerRadius: 4,
+      rightCornerRadius: 4,
+      activeColor: AppColors.backgroundWhite,
+      onTap: (i) => setState(() => activeIndex = i),
     );
   }
 }

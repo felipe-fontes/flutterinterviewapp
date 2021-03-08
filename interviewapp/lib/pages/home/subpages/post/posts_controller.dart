@@ -3,7 +3,9 @@ import 'package:interviewapp/modules/posts/domain/entities/post.dart';
 import 'package:interviewapp/modules/posts/domain/usecases/add_post.dart';
 import 'package:interviewapp/modules/posts/domain/usecases/delete_post.dart';
 import 'package:interviewapp/modules/posts/domain/usecases/update_post.dart';
+import 'package:interviewapp/modules/users/domain/entities/user.dart';
 import 'package:interviewapp/modules/users/domain/usecases/get_logged_user.dart';
+import 'package:interviewapp/modules/users/domain/usecases/logout.dart';
 import 'package:interviewapp/modules/users/infra/models/user_model.dart';
 import 'package:mobx/mobx.dart';
 
@@ -19,6 +21,7 @@ abstract class _PostsControllerBase with Store {
   final GetLoggedUser _getLoggedUser;
   final DeletePost _deletePost;
   final UpdatePost _updatePost;
+  final Logout _logout;
 
   _PostsControllerBase(
     this._addPost,
@@ -26,6 +29,7 @@ abstract class _PostsControllerBase with Store {
     this._getLoggedUser,
     this._deletePost,
     this._updatePost,
+    this._logout,
   );
 
   @observable
@@ -35,15 +39,17 @@ abstract class _PostsControllerBase with Store {
   Future getPosts() async {
     final response = await _getPosts();
     final userResponse = await _getLoggedUser();
-    final user = userResponse | null;
+    this.user = userResponse | null;
     if (response.isRight() && user != null) {
       posts.clear();
       final list = response | null;
 
       posts.addAll(list.map((post) => PostDto(post, user.id)));
     }
-    print(response);
   }
+
+  @observable
+  User user;
 
   //# ADD
 
@@ -99,6 +105,17 @@ abstract class _PostsControllerBase with Store {
     }
 
     this.getPosts();
+
+    return true;
+  }
+
+  @action
+  Future<bool> logout() async {
+    final result = await _logout();
+
+    if (result.isLeft()) {
+      return false;
+    }
 
     return true;
   }

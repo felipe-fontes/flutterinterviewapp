@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:interviewapp/pages/createAccount/create_account_page.dart';
+import 'package:interviewapp/pages/home/home_page.dart';
 import 'package:interviewapp/shared/utils/colors.dart';
 import 'package:interviewapp/widgets/common_button.dart';
 import 'package:interviewapp/widgets/common_text_field.dart';
@@ -65,7 +66,17 @@ class _LoginPageState extends State<LoginPage> {
                     Row(
                       children: [
                         CommonButton(
-                          onPressed: () => _loginController.login(),
+                          onPressed: () async {
+                            final user = await _loginController.login();
+                            if (user != null) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(),
+                                ),
+                              );
+                            }
+                          },
                           text: 'Login',
                         ),
                         SizedBox(

@@ -12,7 +12,6 @@ class NewsDataSourceImpl implements NewsDataSource {
     try {
       final response = await _dio
           .get("https://gb-mobile-app-teste.s3.amazonaws.com/data.json");
-      print(response);
       final body = NewsRootResult.fromMap(response.data);
       final newsModelList = body.news
           .map((x) => NewsModel(

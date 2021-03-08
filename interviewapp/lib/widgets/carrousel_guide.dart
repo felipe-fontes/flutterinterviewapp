@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:gooey_carousel/gooey_carrousel.dart';
-import 'package:interviewapp/modules/users/domain/contracts/user_repository.dart';
-import 'package:interviewapp/pages/home/home_page.dart';
 import 'package:interviewapp/pages/login/login_page.dart';
 import 'package:interviewapp/shared/utils/colors.dart';
 import 'package:interviewapp/widgets/common_button.dart';

@@ -33,4 +33,10 @@ class UserRespositoryImpl implements UserRepository {
 
     return user;
   }
+
+  @override
+  Future<bool> logout() async {
+    await _storage.delete(key: _key);
+    return true;
+  }
 }

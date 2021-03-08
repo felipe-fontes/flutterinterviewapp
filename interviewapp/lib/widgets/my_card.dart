@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:interviewapp/shared/utils/colors.dart';
 
-class GradientCard extends StatelessWidget {
-  final Color startColor;
-  final Color endColor;
+class MyCard extends StatelessWidget {
   final Color shadowColor;
   final Widget child;
   final double bolderRadius;
@@ -11,10 +10,8 @@ class GradientCard extends StatelessWidget {
   final double blurRadius;
   final Offset shadowOffset;
 
-  GradientCard({
+  MyCard({
     Key key,
-    @required this.startColor,
-    @required this.endColor,
     @required this.shadowColor,
     @required this.child,
     this.bolderRadius = 24,
@@ -27,12 +24,10 @@ class GradientCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
+        color: AppColors.backgroundWhite,
         borderRadius: BorderRadius.circular(this.bolderRadius),
-        gradient: LinearGradient(
-            colors: [this.startColor, this.endColor],
-            begin: this.gradientStart,
-            end: this.gradientEnd),
         boxShadow: [
           BoxShadow(
             color: this.shadowColor,
