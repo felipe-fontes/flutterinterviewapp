@@ -48,12 +48,24 @@ class MyApp extends StatelessWidget {
           secondary: AppColors.boticario900,
         ),
       ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          onPrimary: AppColors.boticario50,
+          primary: AppColors.boticario50,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4.0),
+          ),
+        ),
+      ),
       buttonBarTheme: base.buttonBarTheme.copyWith(
         buttonTextTheme: ButtonTextTheme.accent,
       ),
       scaffoldBackgroundColor: AppColors.backgroundWhite,
       cardColor: AppColors.backgroundWhite,
-      textSelectionColor: AppColors.boticario50,
+      textSelectionTheme: base.textSelectionTheme.copyWith(
+        cursorColor: AppColors.boticario900,
+        selectionColor: AppColors.boticario50,
+      ),
       errorColor: AppColors.error,
       textTheme: _buildTextTheme(base.textTheme),
       primaryTextTheme: _buildTextTheme(base.primaryTextTheme),
@@ -73,8 +85,6 @@ class MyApp extends StatelessWidget {
         ),
         border: OutlineInputBorder(),
       ),
-      cursorColor: AppColors.boticario900,
-      // TODO: Add the icon themes (103)
     );
 
     return theme;

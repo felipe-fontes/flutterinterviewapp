@@ -12,10 +12,7 @@ class CommonButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(4.0),
-      ),
+    return ElevatedButton(
       onPressed: this.onPressed,
       child: Text(
         this.text,
