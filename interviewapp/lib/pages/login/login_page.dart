@@ -62,7 +62,12 @@ class _LoginPageState extends State<LoginPage> {
                       obscureText: true,
                       onChanged: _loginController.setPassword,
                     ),
-                    Text(_loginController.errorMessage),
+                    Text(
+                      _loginController.errorMessage,
+                      style: Theme.of(context).textTheme.caption.copyWith(
+                            color: AppColors.error,
+                          ),
+                    ),
                     Row(
                       children: [
                         CommonButton(

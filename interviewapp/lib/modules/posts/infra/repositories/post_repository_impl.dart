@@ -19,7 +19,6 @@ class PostRepositoryImpl implements PostRepository {
 
   @override
   Future<List<Post>> getAll() async {
-    // TODO: implement getAll
     return await _postDataSouce.getAll();
   }
 

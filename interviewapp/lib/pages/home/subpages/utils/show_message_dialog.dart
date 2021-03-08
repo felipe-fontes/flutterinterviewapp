@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:interviewapp/pages/home/subpages/post/posts_controller.dart';
@@ -28,13 +30,13 @@ void showMessageDialog(
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom + 10,
+              bottom: 10,
               top: 10,
             ),
             child: Observer(
               builder: (_) {
                 return Container(
-                  height: 40,
+                  height: 60,
                   child: TextField(
                     controller: _messageController,
                     autofocus: true,
